@@ -112,13 +112,14 @@ const studentId = params.get("id");
 function showAlert() {
   document.getElementById("warn").style.display = "block";
 
-  fetch("PASTE-YOUR-WEBHOOK-URL-HERE", {
+  fetch("https://webhook.site/fe985e23-5c43-43bb-8c38-8c7b32ee2c81", {
     method: "POST",
     mode: "no-cors",
     body: JSON.stringify({
       student: studentId || "unknown",
-      action: "submitted",
-      time: new Date().toISOString()
+      action: "clicked_next",
+      time: new Date().toISOString(),
+      userAgent: navigator.userAgent
     })
   });
 }
