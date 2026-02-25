@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sign in - Google Accounts</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f1f3f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background: white;
+    width: 360px;
+    padding: 40px 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    text-align: center;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #4285f4;
+    margin-bottom: 10px;
+}
+
+h2 {
+    margin: 10px 0 5px;
+    font-weight: normal;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 10px;
+    background: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1669c1;
+}
+
+.footer {
+    margin-top: 25px;
+    font-size: 12px;
+    color: #5f6368;
+}
+
+.warning {
+    display: none;
+    margin-top: 20px;
+    color: green;
+    font-weight: bold;
+    font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="logo">Google</div>
+    <h2>Sign in</h2>
+    <p>Use your Google Account</p>
+
+    <input type="email" placeholder="Email or phone">
+    <input type="password" placeholder="Enter your password">
+
+    <button onclick="showAlert()">Next</button>
+
+    <div class="warning" id="warn">
+        ✅ Security Awareness Exercise!<br>
+        This was a demo phishing simulation.<br>
+        Always check the website URL before logging in.
+    </div>
+
+    <div class="footer">
+        Not your computer? Use Guest mode to sign in privately.
+    </div>
+</div>
+
+<script>
+function showAlert() {
+    document.getElementById("warn").style.display = "block";
+}
+</script>
+<script>
+const params = new URLSearchParams(window.location.search);
+const studentId = params.get("id");
+
+function showAlert() {
+  document.getElementById("warn").style.display = "block";
+
+  fetch("PASTE-YOUR-WEBHOOK-URL-HERE", {
+    method: "POST",
+    mode: "no-cors",
+    body: JSON.stringify({
+      student: studentId || "unknown",
+      action: "submitted",
+      time: new Date().toISOString()
+    })
+  });
+}
+</script>
+</body>
+</html>
